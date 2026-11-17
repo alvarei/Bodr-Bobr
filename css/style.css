@@ -210,12 +210,16 @@ section h2::after {
 }
 
 .values {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    align-items: stretch;
 }
 
 .value-item {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     background: var(--color-milk);
     padding: 1.5rem;
     border-radius: var(--radius);
@@ -241,12 +245,23 @@ section h2::after {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     background: var(--color-milk);
     border-radius: var(--radius);
     padding: 1.5rem;
     text-align: center;
     border: 1px solid var(--color-beige);
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 4px);
+    margin-bottom: 1rem;
 }
 
 .card:hover {
@@ -266,6 +281,7 @@ section h2::after {
 }
 
 .card .price {
+    margin-top: auto;
     font-weight: 700;
     color: var(--color-caramel);
     font-size: 1.1rem;
@@ -482,6 +498,12 @@ footer {
     opacity: 0.8;
 }
 
+@media (max-width: 991px) {
+    .values {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
 /* Адаптивность */
 @media (min-width: 768px) {
     .nav-container {
@@ -489,13 +511,7 @@ footer {
     }
 
     .about-grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        text-align: left;
-    }
-
-    .values {
-        flex-direction: row;
+        grid-template-columns: 1fr;
     }
 
     .menu-grid {
